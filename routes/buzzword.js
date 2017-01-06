@@ -5,10 +5,11 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 var data = require('../data.js');
 
-router.use(bodyParser.urlencoded({extended: false}));
+router.use(bodyParser.urlencoded({extended: true}));
 router.use(bodyParser.json());
 
 router.post('/', (req, res) => {
+  var body = req.body;
   if(req.body.hasOwnProperty('buzzWord') && req.body.hasOwnProperty('points')){
     var newWord = {};
     newWord.buzzWord = req.body.buzzWord;
