@@ -18,7 +18,9 @@ app.get('/buzzwords', (req, res) => {
 app.use('/buzzword', buzzword);
 
 app.post('/reset', (req, res) => {
-  console.log(buzzWordList);
+  scores.buzzwordList = [];
+  scores.userScore = 0;
+  res.send({"success": true});
 });
 
 var server = app.listen(3000, () => {
