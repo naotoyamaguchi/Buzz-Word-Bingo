@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-var scores = require('../scores.js');
+var data = require('../data.js');
 
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
@@ -13,18 +13,18 @@ router.post('/', (req, res) => {
   newWord.buzzWord = req.body.buzzWord;
   newWord.points = req.body.points;
   newWord.heard = false;
-  scores.buzzwordList.push(newWord);
+  data.buzzwordList.push(newWord);
   res.send({"success": true});
   res.end();
 });
 
 router.put('/', (req, res) => {
   var calledWord = req.body;
-  for(let i = 0; i < scores.buzzwordList.length; i++){
-    if(scores.buzzwordList[i].buzzWord === calledWord.buzzWord){
-      scores.userScore += parseInt(scores.buzzwordList[i].points);
-      scores.buzzwordList[i].heard = true;
-      res.send({"success": true, "new Score": scores.userScore});
+  for(let i = 0; i < data.buzzwordList.length; i++){
+    if(data.buzzwordList[i].buzzWord === calledWord.buzzWord){
+      data.userScore += parseInt(scores.buzzwordList[i].points);
+      data.buzzwordList[i].heard = true;
+      res.send({"success": true, "new Score": data.userScore});
       return true;
     }
   }
@@ -34,9 +34,9 @@ router.put('/', (req, res) => {
 
 router.delete('/', (req, res) => {
   var calledWord = req.body;
-  for(let i = 0; i < scores.buzzwordList.length; i++){
-    if(scores.buzzwordList[i].buzzWord === calledWord.buzzWord){
-      scores.buzzwordList.splice(i, 1);
+  for(let i = 0; i < data.buzzwordList.length; i++){
+    if(data.buzzwordList[i].buzzWord === calledWord.buzzWord){
+      data.buzzwordList.splice(i, 1);
       res.send({"success": true});
       return true;
     }

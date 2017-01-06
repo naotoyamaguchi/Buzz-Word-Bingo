@@ -3,7 +3,13 @@
 var list = [];
 var score = 0;
 
+function reset(){
+  list = [];
+  score = 0;
+}
+
 module.exports = {
   buzzwordList: list,
-  userScore: score
+  userScore: score,
+  resetEverything: reset()
 };

@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 var buzzword = require('./routes/buzzword');
-var scores = require('./scores.js');
+var data = require('./data.js');
 
 var app = express();
 
@@ -18,8 +18,7 @@ app.get('/buzzwords', (req, res) => {
 app.use('/buzzword', buzzword);
 
 app.post('/reset', (req, res) => {
-  scores.buzzwordList = [];
-  scores.userScore = 0;
+  data.resetEverything();
   res.send({"success": true});
 });
 
@@ -28,6 +27,6 @@ var server = app.listen(3000, () => {
   var port = server.address().port;
 
   console.log("Server is working and listening...");
-  console.log(scores.buzzwordList);
-  console.log(scores.userScore);
+  console.log(data.buzzwordList);
+  console.log(data.userScore);
 });
