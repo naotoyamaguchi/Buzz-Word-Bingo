@@ -16,7 +16,8 @@ router.post('/', (req, res) => {
     newWord.heard = false;
     data.buzzwordList.push(newWord);
     res.send({"success": true});
-    res.end();
+  } else {
+    res.end("Word didn't have valid properties of buzzWord: 'string' & points: 'number'");
   }
 });
 
