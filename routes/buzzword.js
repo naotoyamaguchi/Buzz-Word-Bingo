@@ -9,13 +9,15 @@ router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
 
 router.post('/', (req, res) => {
-  var newWord = {};
-  newWord.buzzWord = req.body.buzzWord;
-  newWord.points = req.body.points;
-  newWord.heard = false;
-  data.buzzwordList.push(newWord);
-  res.send({"success": true});
-  res.end();
+  if(req.body.hasOwnProperty('buzzWord') && req.body.hasOwnProperty('points')){
+    var newWord = {};
+    newWord.buzzWord = req.body.buzzWord;
+    newWord.points = req.body.points;
+    newWord.heard = false;
+    data.buzzwordList.push(newWord);
+    res.send({"success": true});
+    res.end();
+  }
 });
 
 router.put('/', (req, res) => {

@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/buzzwords', (req, res) => {
-  res.send(scores.buzzwordList);
+  res.send(data.buzzwordList);
 });
 
 app.use('/buzzword', buzzword);
